@@ -1,19 +1,22 @@
 // const express = require('express')
-import express from "express";
+import express, { Router, json } from "express";
+import productRoutes from './routes/products/index'
 const app = express()
 const port = 3000
+
+const router = Router();
+app.use(json());
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-app.get('/products', (req, res) => {
-    res.send("The list of Products")
-});
 
-app.post('/products', (req, res) => {
-    res.send("add new Products")
-})
+// ENDPOINTS
+
+
+app.use('/', router);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
